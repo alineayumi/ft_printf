@@ -1,48 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   printf.h                                           :+:      :+:    :+:   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afukuhar <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: afukuhar <afukuhar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/23 15:50:56 by afukuhar          #+#    #+#             */
-/*   Updated: 2020/07/24 14:52:02 by afukuhar         ###   ########.fr       */
+/*   Updated: 2020/08/04 13:47:39 by afukuhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PRINTF_H
-# define PRINTF_H
+#ifndef FT_PRINTF_H
+# define FT_PRINTF_H
 
-# include <stdlib.h>
-# include <unistd.h>
 # include <stdarg.h>
 # include "./libft/libft.h"
-
-/*
-** --- STRUCT ARGUMENTS ---
-** 
-** Flag characters: # 0 - ' ' + 
-** Field width: decimal digit string or *
-** Precision: '.' followed by a decimal digit string or *
-** Length modifier: hh h ll l
-** Conversion specifiers: d i o u x X e E f F a A c s p n %
-*/
-typedef struct		s_format
-{
-	int				is_string;
-	int				is_integer;
-	int				is_float;
-	int				left; // "-" -> default is to right align the output - 1 or 0
-	int				sign; // "+" -> prepends a plus for positive signed-numeric types. pos = +, neg = - 
-	int				invsign; // " " -> prepends a space for positive signed-numeric types, this is ignored if + exists
-	int				zero; // "0" -> when width is specified, prepends zeros for numeric types. default is to prepend spaces
-	int				hash; // "#" -> g - trailing zeroes are not removed; f, g, e - output always contain a decimal point; x, X - 									0x and 0X are preprended for non-zero numbers 
-	int				w; // number or * - minimum number of characters to output
-	int				p; // ".(number or *)" -> floats: max number of digits to the right of a dec point ; str: max number								 of characters to output, the string is trucated
-	char			*l; // length : l, ll, h, hh
-	char			spec;
-	int				len;
-}					t_format;
+# include "./ft_printf_type.h"
 
 /*
 ** --- functions prototypes ---
@@ -66,4 +39,5 @@ char				*pf_formats(t_format *arg, char *str);
 char				*pf_sprecision(char *str, t_format *arg);
 void				pf_width(char **dst, char *src, t_format *arg);
 void				arg_init(t_format *arg);
+void				ft_pf_internal(const char *str, va_list *ap, t_format *arg);
 #endif

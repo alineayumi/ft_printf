@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afukuhar <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: afukuhar <afukuhar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/23 15:47:30 by afukuhar          #+#    #+#             */
-/*   Updated: 2020/07/27 16:44:17 by afukuhar         ###   ########.fr       */
+/*   Updated: 2020/08/04 22:43:48 by afukuhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
+#include "ft_printf.h"
 
 int			ft_printf(const char *str, ...)
 {
@@ -19,20 +19,25 @@ int			ft_printf(const char *str, ...)
 
 	va_start(ap, str);
 	arg.len = 0;
+	ft_pf_internal(str, &ap, &arg);
+	va_end(ap);
+	return (arg.len);
+}
+
+void		ft_pf_internal(const char *str, va_list *ap, t_format *arg)
+{
 	while (*str)
 	{
 		if (*str == '%')
 		{
 			str++;
-			arg_init(&arg);
-			get_arg(&str, &ap, &arg);
-			arg_print(&ap, &arg);
+			arg_init(arg);
+			get_arg(&str, ap, arg);
+			arg_print(ap, arg);
 		}
 		else
-			str_print(&str, &arg);
+			str_print(&str, arg);
 	}
-	va_end(ap);
-	return (arg.len);
 }
 
 void		arg_init(t_format *arg)
@@ -40,15 +45,29 @@ void		arg_init(t_format *arg)
 	arg->is_string = 0;
 	arg->is_integer = 0;
 	arg->is_float = 0;
+    arg->is_char = 0;
+    arg->is_upper = 0;
+    arg->is_numeric = 0;
+    arg->is_negative = 0;
+    arg->is_signed = 0;
+    arg->is_zero = 0;
+    arg->is_normalized = 0;
+    arg->is_null = 0;
+    arg->is_nan = 0;
+    arg->is_inf = 0; 
+    arg->is_llong = 0;
+    arg->is_short = 0;    
+    arg->base = 0;
+    arg->exponent = 0;
 	arg->left = 0;
 	arg->sign = 0;
 	arg->invsign = 0;
 	arg->zero = 0;
 	arg->hash = 0;
-	arg->w = 0;
-	arg->p = 0;
-	arg->l = "";
-	arg->spec = '\0';
+	arg->w = -1;
+	arg->p = -1;
+	arg->l = 0; //should change!! just a char!
+	arg->spec = 0;
 }
 
 void		arg_print(va_list *ap, t_format *arg)
