@@ -6,7 +6,7 @@
 /*   By: afukuhar <afukuhar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/23 15:47:30 by afukuhar          #+#    #+#             */
-/*   Updated: 2020/08/04 22:43:48 by afukuhar         ###   ########.fr       */
+/*   Updated: 2020/08/25 11:45:50 by afukuhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -209,12 +209,15 @@ void		pf_savep(const char *str, t_format *arg, int *i, va_list *ap)
 	{
 		*i = *i + 1;
 		p = 0;
-		while (ft_isdigit(str[*i]))
+		if (ft_isdigit(str[*i]))
 		{
-			p = 10 * p + (str[*i] - '0');
-			*i = *i + 1;
+			while (ft_isdigit(str[*i]))
+			{
+				p = 10 * p + (str[*i] - '0');
+				*i = *i + 1;
+			}
 		}
-		if (str[*i] == '*')
+		else if (str[*i] == '*')
 		{
 			p = va_arg(*ap, int);
 			*i = *i + 1;
@@ -223,7 +226,7 @@ void		pf_savep(const char *str, t_format *arg, int *i, va_list *ap)
 	}
 }
 
-void	pf_savelen(const char *str, t_format *arg, int *i)
+void		pf_savelen(const char *str, t_format *arg, int *i)
 {
 	if (str[*i] == 'l')
 	{
@@ -319,26 +322,26 @@ char		*pf_formats(t_format *arg, char *str)
 	return (0);
 }*/
 
-char		*pf_formatn(t_format *arg, int nb)
-{
-	char	*str_n;
+// char		*pf_formatn(t_format *arg, int nb)
+// {
+// 	char	*str_n;
 
-	str_n = ft_itoa_base(nb, 10);
-}
+// 	str_n = ft_itoa_base(nb, 10);
+// }
 
-char		*pf_dprecision(char *str_i, t_format *arg)
-{
-	char	*int_prec;
-	int		len;
+// char		*pf_dprecision(char *str_i, t_format *arg)
+// {
+// 	char	*int_prec;
+// 	int		len;
 
-	len = (int)ft_strlen(str_i);
-	if (arg->p > len)
-	{
-		int_prec = ft_strnew(arg->p);
-		ft_memset(int_prec, '0', arg->p - len);
-		//ft_strlcpy(int_prec + arg-> - len, str_i, len + 1);
-	}
-}
+// 	len = (int)ft_strlen(str_i);
+// 	if (arg->p > len)
+// 	{
+// 		int_prec = ft_strnew(arg->p);
+// 		ft_memset(int_prec, '0', arg->p - len);
+// 		//ft_strlcpy(int_prec + arg-> - len, str_i, len + 1);
+// 	}
+// }
 
 char		*pf_sprecision(char *str, t_format *arg)
 {
@@ -346,7 +349,7 @@ char		*pf_sprecision(char *str, t_format *arg)
 	int		len;
 
 	len = (int)ft_strlen(str) > arg->p ? arg->p : ft_strlen(str);
-	if (len <= arg->p)
+	if (len < arg->p)
 		return (str);
 	str_prec = ft_strnew(len + 1);
 	ft_strlcpy(str_prec, str, len + 1);
