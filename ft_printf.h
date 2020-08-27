@@ -6,7 +6,7 @@
 /*   By: afukuhar <afukuhar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/23 15:50:56 by afukuhar          #+#    #+#             */
-/*   Updated: 2020/08/06 17:00:37 by afukuhar         ###   ########.fr       */
+/*   Updated: 2020/08/27 12:26:05 by afukuhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ int					is_conv_spec(char c);
 int					is_flag(char c);
 int					is_valid(char *str);
 void				pf_saveflag(const char *str, t_format *arg, int *i);
-void				pf_savewidth(const char *str, t_format *arg, int *i, va_list *ap);
-void				pf_saveprecision(const char *str, t_format *arg, int *i, va_list *ap);
+void				pf_savew(const char *str, t_format *arg, int *i, va_list *ap);
+void				pf_savep(const char *str, t_format *arg, int *i, va_list *ap);
 void				pf_savelen(const char *str, t_format *arg, int *i);
 void				pf_savespec(const char *str, t_format *arg, int *i);
 void				get_arg(const char **str, va_list *ap, t_format *new);
