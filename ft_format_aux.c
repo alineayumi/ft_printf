@@ -6,7 +6,7 @@
 /*   By: afukuhar <afukuhar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/27 11:43:26 by afukuhar          #+#    #+#             */
-/*   Updated: 2020/08/27 11:45:50 by afukuhar         ###   ########.fr       */
+/*   Updated: 2020/09/07 14:53:30 by afukuhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ char		*pf_sprecision(char *str, t_format *arg)
 }
 
 /*
-** Fill the w - len characters of dst with zeroes, depends on arg->left
+** Fill the arg->n_pad with number of chars to print
+** analyse 
 */
 
 void		pf_width(char **dst, char *src, t_format *arg)
@@ -38,7 +39,7 @@ void		pf_width(char **dst, char *src, t_format *arg)
 	int		len;
 
 	str = "csp%";
-	num = "diuxXefg";
+	num = "diuxX";
 	pad = (arg->zero && !(arg->left)) ? '0' : ' ';
 	len = ft_strlen(src);
 	if (arg->w <= len)

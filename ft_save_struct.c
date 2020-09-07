@@ -6,7 +6,7 @@
 /*   By: afukuhar <afukuhar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/27 11:36:38 by afukuhar          #+#    #+#             */
-/*   Updated: 2020/08/27 12:17:33 by afukuhar         ###   ########.fr       */
+/*   Updated: 2020/09/03 13:39:14 by afukuhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,8 @@ void		pf_saveflag(const char *str, t_format *arg, int *i)
 {
 	while (is_flag(str[*i]))
 	{
-		if (str[*i] == '#')
-			arg->hash = 1;
-		else if (str[*i] == ' ')
-			arg->invsign = 1;
-		else if (str[*i] == '0')
+		if (str[*i] == '0')
 			arg->zero = 1;
-		else if (str[*i] == '+')
-			arg->sign = 1;
 		else if (str[*i] == '-')
 			arg->left = 1;
 		*i = *i + 1;
@@ -73,32 +67,6 @@ void		pf_savep(const char *str, t_format *arg, int *i, va_list *ap)
 			*i = *i + 1;
 		}
 		arg->p = p;
-	}
-}
-
-void		pf_savelen(const char *str, t_format *arg, int *i)
-{
-	if (str[*i] == 'l')
-	{
-		*i = *i + 1;
-		if (str[*i] == 'l')
-		{
-			arg->l = "ll";
-			*i = *i + 1;
-		}
-		else
-			arg->l = "l";
-	}
-	else if (str[*i] == 'h')
-	{
-		*i = *i + 1;
-		if (str[*i] == 'h')
-		{
-			arg->l = "hh";
-			*i = *i + 1;
-		}
-		else
-			arg->l = "h";
 	}
 }
 

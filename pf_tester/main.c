@@ -6,7 +6,7 @@
 /*   By: afukuhar <afukuhar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/06 15:15:47 by afukuhar          #+#    #+#             */
-/*   Updated: 2020/08/25 10:30:34 by afukuhar         ###   ########.fr       */
+/*   Updated: 2020/09/01 13:29:17 by afukuhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,7 @@ int main()
 	d1 = printf("%10.4dA\n", 123);
 
 	printf("%d = %d and %d = %d", n1, n2, n3, n4);
+	printf("%c");
+
 	return (0);
 }
