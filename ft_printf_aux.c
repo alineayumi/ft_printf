@@ -6,7 +6,7 @@
 /*   By: afukuhar <afukuhar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/27 12:14:46 by afukuhar          #+#    #+#             */
-/*   Updated: 2020/09/07 23:30:55 by afukuhar         ###   ########.fr       */
+/*   Updated: 2020/09/08 14:54:34 by afukuhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,15 @@ void		arg_init(t_format *arg)
 	// arg->is_char = 0;
 	// arg->is_upper = 0;
 	// arg->is_numeric = 0;
-	// arg->is_negative = 0;
+	arg->is_neg = 0;
 	// arg->is_signed = 0;
     // arg->is_zero = 0;
     // arg->is_normalized = 0;
-    arg->is_null = 0;
-    arg->is_nan = 0;
-    arg->is_inf = 0;    
-    arg->base = 0;
-    arg->exponent = 0;
+    // arg->is_null = 0;
+    // arg->is_nan = 0;
+    // arg->is_inf = 0;    
+    // arg->base = 0;
+    // arg->exponent = 0;
 	arg->left = 0;
 	arg->zero = 0;
 	arg->w = -1;
@@ -36,6 +36,8 @@ void		arg_init(t_format *arg)
 	arg->pad = 0;
 	arg->n_pad = 0;
 	arg->n_str = 0;
+	arg->pad_zero = 0;
+	arg->spec = 0;
 }
 
 /*
@@ -82,8 +84,6 @@ void		str_print(const char **str, t_format *arg)
 	{
 		print = ft_substr(*str, 0, end - *str);
 		arg->len += ft_putstr(print);
-		if (arg->is_null)
-			arg->len -= 1; 
 		ft_strdel(&print);
 	}
 	*str = end;

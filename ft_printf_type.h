@@ -6,7 +6,7 @@
 /*   By: afukuhar <afukuhar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/04 12:40:50 by afukuhar          #+#    #+#             */
-/*   Updated: 2020/09/07 23:30:01 by afukuhar         ###   ########.fr       */
+/*   Updated: 2020/09/08 14:53:32 by afukuhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,15 +28,15 @@ typedef struct		s_format
     // int		is_char;
     // int		is_upper;
     // int		is_numeric;
-    // int		is_negative;
+    int		is_neg;
     // int		is_signed;
     // int		is_zero;
     // int		is_normalized;
-    int		is_null;
-    int		is_nan;
-    int		is_inf; 
-    int		base;
-    int		exponent;
+    // int		is_null;
+    // int		is_nan;
+    // int		is_inf; 
+    // int		base;
+    // int		exponent;
 	int		left; // "-" -> default is to right align the output - 1 or 0
 	int		zero; // "0" -> when width is specified, prepends zeros for numeric types. default is to prepend spaces
 	int		w; // number or * - minimum number of characters to output
@@ -44,6 +44,7 @@ typedef struct		s_format
 	char	pad; // char to pad
 	int		n_pad; //number of chars to pad
 	int		n_str; //number of chars to print from str
+	int		pad_zero; //number of zeroes to pad on left of a number
 	char	spec;
 	int		len; //total chars printed
 }					t_format;

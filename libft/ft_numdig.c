@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_numdig.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afukuhar <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: afukuhar <afukuhar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/14 21:38:58 by afukuhar          #+#    #+#             */
-/*   Updated: 2020/04/14 21:44:09 by afukuhar         ###   ########.fr       */
+/*   Updated: 2020/09/08 13:34:21 by afukuhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_numdig(int n, int base)
+int	ft_numdig(long long int n, int base)
 {
 	int len;
 

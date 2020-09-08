@@ -6,7 +6,7 @@
 /*   By: afukuhar <afukuhar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/27 11:42:42 by afukuhar          #+#    #+#             */
-/*   Updated: 2020/09/08 00:10:23 by afukuhar         ###   ########.fr       */
+/*   Updated: 2020/09/08 15:15:42 by afukuhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,10 @@ void		arg_print(t_format *arg, va_list *ap)
 		pf_c(arg, arg->spec == 'c' ? va_arg(*ap, int) : '%');
 	if (arg->spec == 's')
 		pf_s(arg, va_arg(*ap, char *));
-	//if (arg->spec == 'p')
-		//new = pf_formatp(arg, va_arg(*ap, void *);
+	if (arg->spec == 'p')
+		pf_p(arg, (unsigned long long int) va_arg(*ap, void *));
+	if (arg->spec == 'd' || arg->spec == 'i')
+		pf_di(arg, va_arg(*ap, int));
 }
 
 void		pf_c(t_format *arg, int c)
@@ -53,6 +55,42 @@ void		pf_s(t_format *arg, char *str)
 
 }
 
+void		pf_p(t_format *arg, unsigned long long int p)
+{
+	char *nbr;
+
+	nbr = pf_analyse_p(arg, p);
+	if (arg->left)
+	{
+		arg->len += ft_puthexa(nbr, arg->pad_zero);
+		arg->len += ft_putnchar(arg->pad, arg->n_pad);
+	}
+	else
+	{
+		arg->len += ft_putnchar(arg->pad, arg->n_pad);
+		arg->len += ft_puthexa(nbr, arg->pad_zero);
+	}
+	ft_strdel(&nbr);
+}
+
+void		pf_di(t_format *arg, long long int n)
+{
+	char *nbr;
+
+	nbr = pf_analyse_di(arg, n);
+	if (arg->left)
+	{
+		arg->len += ft_putint(nbr, arg->pad_zero, arg->is_neg);
+		arg->len += ft_putnchar(arg->pad, arg->n_pad);
+	}
+	else
+	{
+		arg->len += ft_putnchar(arg->pad, arg->n_pad);
+		arg->len += ft_putint(nbr, arg->pad_zero, arg->is_neg);
+	}
+	ft_strdel(&nbr);
+}
+
 void		pf_analyse_c(t_format *arg)
 {
 	if (arg->w > 1)
@@ -76,6 +114,45 @@ void		pf_analyse_s(t_format *arg, char *str)
 		arg->pad = (arg->zero && !arg->left) ? '0' : ' ';
 		arg->n_pad = arg->w - arg->n_str;
 	}
+}
+
+char		*pf_analyse_p(t_format *arg, long long int p)
+{
+	char *nbr;
+	int len;
+
+	nbr = ft_itoa_base(p, 16);
+	len = ft_strlen(nbr);
+	arg->pad_zero = (arg->p > len) ? arg->p - len : 0;
+	len += arg->pad_zero;
+	if (arg->w > len + 2)
+	{
+		arg->pad = (arg->zero && !arg->left) ? '0' : ' ';
+		arg->n_pad = arg->w - len - 2;
+	}
+	return (nbr);
+}
+
+char		*pf_analyse_di(t_format *arg, unsigned long long int n)
+{
+	char *nbr;
+	int len;
+
+	if (n < 0)
+	{
+		arg->is_neg = 1;
+		n *= -1;
+	}
+	nbr = ft_itoa_base(n, 10);
+	len = ft_strlen(nbr);
+	arg->pad_zero = (arg->p > len) ? arg->p - len : 0;
+	len += arg->pad_zero + ((n < 0) ? 1 : 0);
+	if (arg->w > len)
+	{
+		arg->pad = (arg->zero && !arg->left) ? '0' : ' ';
+		arg->n_pad = arg->w - len;
+	}
+	return (nbr);
 }
 
 int		ft_putnchar(char pad, int n)
@@ -109,5 +186,30 @@ int		ft_putnstr(char *str, int n)
 			n--;
 		}
 	}
+	return (len);
+}
+
+int		ft_puthexa(char *nbr, int pad_zero)
+{
+	int len;
+
+	len = 0;
+	len += ft_putstr("0x");
+	len += ft_putnchar('0', pad_zero);
+	len += ft_putstr(nbr);
+
+	return (len);
+}
+
+int		ft_putint(char *nbr, int pad_zero, int is_neg)
+{
+	int len;
+
+	len = 0;
+	if (is_neg)
+		len += ft_putstr("-");
+	len += ft_putnchar('0', pad_zero);
+	len += ft_putstr(nbr);
+
 	return (len);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alineayumi <marvin@42.fr>                  +#+  +:+       +#+        */
+/*   By: afukuhar <afukuhar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/08 13:11:28 by afukuhar          #+#    #+#             */
-/*   Updated: 2020/04/26 16:17:44 by afukuhar         ###   ########.fr       */
+/*   Updated: 2020/09/08 13:33:17 by afukuhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,9 +89,9 @@ void				ft_memdel(void **ap);
 ** --- NUMERIC CONVERSION FUNCTIONS ---
 */
 char				*ft_itoa(int n);
-char				*ft_itoa_base(int n, int base);
+char				*ft_itoa_base(long long int n, int base);
 int					ft_atoi_base(const char *str, int base);
-int					ft_numdig(int n, int base);
+int					ft_numdig(long long int n, int base);
 /*
 ** --- STRING MANIPULATION FUNCTIONS ---
 */
