@@ -6,7 +6,7 @@
 /*   By: afukuhar <afukuhar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/27 12:14:46 by afukuhar          #+#    #+#             */
-/*   Updated: 2020/09/07 15:15:48 by afukuhar         ###   ########.fr       */
+/*   Updated: 2020/09/07 23:30:55 by afukuhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ void		arg_init(t_format *arg)
 	arg->spec = 0;
 	arg->pad = 0;
 	arg->n_pad = 0;
+	arg->n_str = 0;
 }
 
 /*

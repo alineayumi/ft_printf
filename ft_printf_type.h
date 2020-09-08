@@ -6,7 +6,7 @@
 /*   By: afukuhar <afukuhar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/04 12:40:50 by afukuhar          #+#    #+#             */
-/*   Updated: 2020/09/03 13:39:17 by afukuhar         ###   ########.fr       */
+/*   Updated: 2020/09/07 23:30:01 by afukuhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,15 +23,15 @@
 */
 typedef struct		s_format
 {
-	int		is_string;
-	int		is_integer;
-    int		is_char;
-    int		is_upper;
-    int		is_numeric;
-    int		is_negative;
-    int		is_signed;
-    int		is_zero;
-    int		is_normalized;
+	// int		is_string;
+	// int		is_integer;
+    // int		is_char;
+    // int		is_upper;
+    // int		is_numeric;
+    // int		is_negative;
+    // int		is_signed;
+    // int		is_zero;
+    // int		is_normalized;
     int		is_null;
     int		is_nan;
     int		is_inf; 
@@ -41,8 +41,9 @@ typedef struct		s_format
 	int		zero; // "0" -> when width is specified, prepends zeros for numeric types. default is to prepend spaces
 	int		w; // number or * - minimum number of characters to output
 	int		p; // ".(number or *)" -> floats: max number of digits to the right of a dec point ; str: max number								 of characters to output, the string is trucated
-	char	pad;
-	int		n_pad;
+	char	pad; // char to pad
+	int		n_pad; //number of chars to pad
+	int		n_str; //number of chars to print from str
 	char	spec;
 	int		len; //total chars printed
 }					t_format;
