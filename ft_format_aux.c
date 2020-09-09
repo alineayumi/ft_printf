@@ -6,13 +6,13 @@
 /*   By: afukuhar <afukuhar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/27 11:43:26 by afukuhar          #+#    #+#             */
-/*   Updated: 2020/09/08 10:37:45 by afukuhar         ###   ########.fr       */
+/*   Updated: 2020/09/09 00:39:22 by afukuhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int main()
+int test()
 {
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: afukuhar <afukuhar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/27 11:42:42 by afukuhar          #+#    #+#             */
-/*   Updated: 2020/09/08 15:15:42 by afukuhar         ###   ########.fr       */
+/*   Updated: 2020/09/09 01:24:29 by afukuhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,7 +133,7 @@ char		*pf_analyse_p(t_format *arg, long long int p)
 	return (nbr);
 }
 
-char		*pf_analyse_di(t_format *arg, unsigned long long int n)
+char		*pf_analyse_di(t_format *arg, long long int n)
 {
 	char *nbr;
 	int len;
@@ -143,14 +143,19 @@ char		*pf_analyse_di(t_format *arg, unsigned long long int n)
 		arg->is_neg = 1;
 		n *= -1;
 	}
-	nbr = ft_itoa_base(n, 10);
+	nbr = (!n && !arg->p) ? ft_strnew(0) : ft_itoa_base(n, 10);
 	len = ft_strlen(nbr);
 	arg->pad_zero = (arg->p > len) ? arg->p - len : 0;
-	len += arg->pad_zero + ((n < 0) ? 1 : 0);
+	len += arg->pad_zero + (arg->is_neg ? 1 : 0);
 	if (arg->w > len)
 	{
-		arg->pad = (arg->zero && !arg->left) ? '0' : ' ';
-		arg->n_pad = arg->w - len;
+		if (arg->zero && !arg->left && arg->p < 0)
+			arg->pad_zero += arg->w - len;
+		else
+		{
+			arg->pad = ' ';
+			arg->n_pad = arg->w - len;
+		}
 	}
 	return (nbr);
 }
