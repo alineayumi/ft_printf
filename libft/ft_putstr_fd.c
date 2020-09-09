@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afukuhar <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: afukuhar <afukuhar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/15 19:54:15 by afukuhar          #+#    #+#             */
-/*   Updated: 2020/04/15 19:54:18 by afukuhar         ###   ########.fr       */
+/*   Updated: 2020/09/09 11:09:39 by afukuhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int		ft_putstr_fd(char *s, int fd)
 
 	len = 0;
 	if (!s)
-		return 0;
+		return (0);
 	while (*s)
 	{
 		len += ft_putchar_fd(*s, fd);

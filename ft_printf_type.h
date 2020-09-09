@@ -6,46 +6,44 @@
 /*   By: afukuhar <afukuhar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/04 12:40:50 by afukuhar          #+#    #+#             */
-/*   Updated: 2020/09/08 14:53:32 by afukuhar         ###   ########.fr       */
+/*   Updated: 2020/09/09 11:17:21 by afukuhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_TYPE_H
 # define FT_PRINTF_TYPE_H
+
 /*
 ** --- STRUCT ARGUMENTS ---
-** 
-** Flag characters: # 0 - ' ' + 
+**
+** Flag characters: # 0 - ' ' +
 ** Field width: decimal digit string or *
 ** Precision: '.' followed by a decimal digit string or *
 ** Length modifier: hh h ll l
 ** Conversion specifiers: d i o u x X e E f F a A c s p n %
+** "-" -> default is to right align the output - 1 or 0
+** "0" -> when width is specified, prepends zeros for numeric types.
+** 		default is to prepend spaces
+** ".(number or *)" -> floats: max number of digits to the right of a dec point
+** 		str: max number of characters to output, the string is trucated
+** "pad" -> char to pad
+** "n_pad" -> number of chars to pad
+** "n_str" -> number of chars to print from str
+** "pad_zero" -> number of zeroes to pad on left of a number
+** "ken" -> total chars printed
 */
 typedef struct		s_format
 {
-	// int		is_string;
-	// int		is_integer;
-    // int		is_char;
-    // int		is_upper;
-    // int		is_numeric;
-    int		is_neg;
-    // int		is_signed;
-    // int		is_zero;
-    // int		is_normalized;
-    // int		is_null;
-    // int		is_nan;
-    // int		is_inf; 
-    // int		base;
-    // int		exponent;
-	int		left; // "-" -> default is to right align the output - 1 or 0
-	int		zero; // "0" -> when width is specified, prepends zeros for numeric types. default is to prepend spaces
-	int		w; // number or * - minimum number of characters to output
-	int		p; // ".(number or *)" -> floats: max number of digits to the right of a dec point ; str: max number								 of characters to output, the string is trucated
-	char	pad; // char to pad
-	int		n_pad; //number of chars to pad
-	int		n_str; //number of chars to print from str
-	int		pad_zero; //number of zeroes to pad on left of a number
+	int		is_neg;
+	int		left;
+	int		zero;
+	int		w;
+	int		p;
+	char	pad;
+	int		n_pad;
+	int		n_str;
+	int		pad_zero;
 	char	spec;
-	int		len; //total chars printed
+	int		len;
 }					t_format;
 #endif

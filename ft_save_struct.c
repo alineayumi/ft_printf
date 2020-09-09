@@ -6,75 +6,79 @@
 /*   By: afukuhar <afukuhar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/27 11:36:38 by afukuhar          #+#    #+#             */
-/*   Updated: 2020/09/03 13:39:14 by afukuhar         ###   ########.fr       */
+/*   Updated: 2020/09/09 11:08:47 by afukuhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void		pf_saveflag(const char *str, t_format *arg, int *i)
+const char	*pf_saveflag(const char *str, t_format *arg)
 {
-	while (is_flag(str[*i]))
+	while (is_flag(*str))
 	{
-		if (str[*i] == '0')
+		if (*str == '0')
 			arg->zero = 1;
-		else if (str[*i] == '-')
+		else if (*str == '-')
 			arg->left = 1;
-		*i = *i + 1;
+		str++;
 	}
+	return (str);
 }
 
-void		pf_savew(const char *str, t_format *arg, int *i, va_list *ap)
+const char	*pf_savew(const char *str, t_format *arg, va_list *ap)
 {
-	int	w;
+	int		w;
 
-	if (ft_isdigit(str[*i]))
+	if (ft_isdigit(*str))
 	{
 		w = 0;
-		while (ft_isdigit(str[*i]))
+		while (ft_isdigit(*str))
 		{
-			w = 10 * w + (str[*i] - '0');
-			*i = *i + 1;
+			w = 10 * w + (*str - '0');
+			str++;
 		}
 		arg->w = w;
 	}
-	else if (str[*i] == '*')
+	else if (*str == '*')
 	{
 		arg->w = va_arg(*ap, int);
-		*i = *i + 1;
+		str++;
 	}
+	return (str);
 }
 
-void		pf_savep(const char *str, t_format *arg, int *i, va_list *ap)
+const char	*pf_savep(const char *str, t_format *arg, va_list *ap)
 {
 	int p;
 
-	if (str[*i] == '.')
+	if (*str == '.')
 	{
-		*i = *i + 1;
+		str++;
 		p = 0;
-		if (ft_isdigit(str[*i]))
+		if (ft_isdigit(*str))
 		{
-			while (ft_isdigit(str[*i]))
+			while (ft_isdigit(*str))
 			{
-				p = 10 * p + (str[*i] - '0');
-				*i = *i + 1;
+				p = 10 * p + (*str - '0');
+				str++;
 			}
 		}
-		else if (str[*i] == '*')
+		else if (*str == '*')
 		{
 			p = va_arg(*ap, int);
-			*i = *i + 1;
+			str++;
 		}
 		arg->p = p;
 	}
+	return (str);
 }
 
-void		pf_savespec(const char *str, t_format *arg, int *i)
+const char	*pf_savespec(const char *str, t_format *arg)
 {
-	if (is_conv_spec(str[*i]))
+	if (is_conv_spec(*str))
 	{
-		arg->spec = str[*i];
-		*i = *i + 1;
+		arg->spec = *str;
+		str++;
 	}
+	return (str);
 }

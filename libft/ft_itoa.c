@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afukuhar <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: afukuhar <afukuhar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/15 19:47:11 by afukuhar          #+#    #+#             */
-/*   Updated: 2020/04/15 19:47:15 by afukuhar         ###   ########.fr       */
+/*   Updated: 2020/09/09 11:39:55 by afukuhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,5 @@
 
 char	*ft_itoa(int n)
 {
-	return (ft_itoa_base(n, 10));
+	return (ft_itoa_base(n, 10, 0));
 }

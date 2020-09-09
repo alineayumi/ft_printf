@@ -6,28 +6,15 @@
 /*   By: afukuhar <afukuhar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/27 12:14:46 by afukuhar          #+#    #+#             */
-/*   Updated: 2020/09/08 14:54:34 by afukuhar         ###   ########.fr       */
+/*   Updated: 2020/09/09 11:25:18 by afukuhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void		arg_init(t_format *arg)
+void	arg_init(t_format *arg)
 {
-	// arg->is_string = 0;
-	// arg->is_integer = 0;
-	// arg->is_char = 0;
-	// arg->is_upper = 0;
-	// arg->is_numeric = 0;
 	arg->is_neg = 0;
-	// arg->is_signed = 0;
-    // arg->is_zero = 0;
-    // arg->is_normalized = 0;
-    // arg->is_null = 0;
-    // arg->is_nan = 0;
-    // arg->is_inf = 0;    
-    // arg->base = 0;
-    // arg->exponent = 0;
 	arg->left = 0;
 	arg->zero = 0;
 	arg->w = -1;
@@ -47,34 +34,31 @@ void		arg_init(t_format *arg)
 ** str points to first char after %
 */
 
-void		get_arg(const char **str, va_list *ap, t_format *new)
+void	get_arg(const char **str, va_list *ap, t_format *new)
 {
-	int		i;
-
-	i = 0;
-	pf_saveflag(*str, new, &i);
-	pf_savew(*str, new, &i, ap);
-	pf_savep(*str, new, &i, ap);
-	pf_savespec(*str, new, &i);
-	*str = *str + i;
+	*str = pf_saveflag(*str, new);
+	*str = pf_savew(*str, new, ap);
+	*str = pf_savep(*str, new, ap);
+	*str = pf_savespec(*str, new);
 }
 
-// void		arg_print(va_list *ap, t_format *arg)
-// {
-// 	char	*print;
+void	arg_print(t_format *arg, va_list *ap)
+{
+	if (arg->spec == 'c' || arg->spec == '%')
+		pf_c(arg, arg->spec == 'c' ? va_arg(*ap, int) : '%');
+	if (arg->spec == 's')
+		pf_s(arg, va_arg(*ap, char *));
+	if (arg->spec == 'p')
+		pf_p(arg, (unsigned long long int)va_arg(*ap, void *));
+	if (arg->spec == 'd' || arg->spec == 'i')
+		pf_di(arg, va_arg(*ap, int));
+	if (arg->spec == 'u')
+		pf_di(arg, va_arg(*ap, unsigned int));
+	if (arg->spec == 'x' || arg->spec == 'X')
+		pf_x(arg, va_arg(*ap, unsigned int));
+}
 
-// 	print = pf_format(arg, ap);
-// 	arg->len += ft_putstr(print);
-// 	ft_strdel(&print);
-// }
-
-/*
-** Print the string until it finds a "%" or "\0"
-** The str to print starts where the pointer str is pointing at
-** It returns the pointer to str at % or end of string
-*/
-
-void		str_print(const char **str, t_format *arg)
+void	str_print(const char **str, t_format *arg)
 {
 	char	*end;
 	char	*print;
@@ -87,4 +71,17 @@ void		str_print(const char **str, t_format *arg)
 		ft_strdel(&print);
 	}
 	*str = end;
+}
+
+int		ft_putnchar(char pad, int n)
+{
+	int len;
+
+	len = 0;
+	while (n)
+	{
+		len += ft_putchar(pad);
+		n--;
+	}
+	return (len);
 }

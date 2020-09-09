@@ -6,7 +6,7 @@
 /*   By: afukuhar <afukuhar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/27 11:40:30 by afukuhar          #+#    #+#             */
-/*   Updated: 2020/08/27 11:44:53 by afukuhar         ###   ########.fr       */
+/*   Updated: 2020/09/09 10:14:15 by afukuhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,16 +60,5 @@ int			is_flag(char c)
 	flags = "#0- +";
 	if (ft_strchr(flags, c))
 		return (1);
-	return (0);
-}
-
-/*
-** checks if all strings between % and conversion specifier are valid
-** !! Need to think if it is necessaire and how to implement
-*/
-
-int			is_valid(char *str)
-{
-	(void)str;
 	return (0);
 }

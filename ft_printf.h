@@ -6,7 +6,7 @@
 /*   By: afukuhar <afukuhar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/23 15:50:56 by afukuhar          #+#    #+#             */
-/*   Updated: 2020/09/09 01:53:11 by afukuhar         ###   ########.fr       */
+/*   Updated: 2020/09/09 10:53:58 by afukuhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,10 @@ void				str_print(const char **str, t_format *arg);
 char				*nxt_conv_spec(char *str);
 int					is_conv_spec(char c);
 int					is_flag(char c);
-int					is_valid(char *str);
-void				pf_saveflag(const char *str, t_format *arg, int *i);
-void				pf_savew(const char *str, t_format *arg, int *i, va_list *ap);
-void				pf_savep(const char *str, t_format *arg, int *i, va_list *ap);
-void				pf_savespec(const char *str, t_format *arg, int *i);
+const char			*pf_saveflag(const char *str, t_format *arg);
+const char			*pf_savew(const char *str, t_format *arg, va_list *ap);
+const char			*pf_savep(const char *str, t_format *arg, va_list *ap);
+const char			*pf_savespec(const char *str, t_format *arg);
 void				get_arg(const char **str, va_list *ap, t_format *new);
 void				arg_print(t_format *arg, va_list *ap);
 void				pf_c(t_format *arg, int c);
