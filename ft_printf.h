@@ -6,7 +6,7 @@
 /*   By: afukuhar <afukuhar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/23 15:50:56 by afukuhar          #+#    #+#             */
-/*   Updated: 2020/09/08 15:44:51 by afukuhar         ###   ########.fr       */
+/*   Updated: 2020/09/09 01:53:11 by afukuhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,14 +36,16 @@ void				pf_c(t_format *arg, int c);
 void				pf_s(t_format *arg, char *str);
 void				pf_p(t_format *arg, unsigned long long int p);
 void				pf_di(t_format *arg, long long int n);
+void				pf_x(t_format *arg, unsigned int x);
 int					ft_putnchar(char pad, int n);
 int					ft_putnstr(char *str, int n);
-int					ft_puthexa(char *nbr, int pad_zero);
+int					ft_puthexa(char *nbr, int pad_zero, int is_p);
 int					ft_putint(char *nbr, int pad_zero, int is_neg);
 void				pf_analyse_c(t_format *arg);
 void				pf_analyse_s(t_format *arg, char *str);
 char				*pf_analyse_di(t_format *arg, long long int n);
 char				*pf_analyse_p(t_format *arg, long long int p);
+char				*pf_analyse_x(t_format *arg, long long int x);
 void				arg_init(t_format *arg);
 void				ft_pf_internal(const char *str, va_list *ap, t_format *arg);
 #endif
