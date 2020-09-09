@@ -6,7 +6,7 @@
 /*   By: afukuhar <afukuhar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/27 11:42:42 by afukuhar          #+#    #+#             */
-/*   Updated: 2020/09/09 01:24:29 by afukuhar         ###   ########.fr       */
+/*   Updated: 2020/09/09 01:33:20 by afukuhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ void		arg_print(t_format *arg, va_list *ap)
 		pf_p(arg, (unsigned long long int) va_arg(*ap, void *));
 	if (arg->spec == 'd' || arg->spec == 'i')
 		pf_di(arg, va_arg(*ap, int));
+	if (arg->spec == 'u')
+		pf_di(arg, va_arg(*ap, unsigned int));
 }
 
 void		pf_c(t_format *arg, int c)
