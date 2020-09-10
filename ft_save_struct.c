@@ -6,7 +6,7 @@
 /*   By: afukuhar <afukuhar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/27 11:36:38 by afukuhar          #+#    #+#             */
-/*   Updated: 2020/09/09 14:10:09 by afukuhar         ###   ########.fr       */
+/*   Updated: 2020/09/10 12:47:08 by afukuhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ const char	*pf_savew(const char *str, t_format *arg, va_list *ap)
 	else if (*str == '*')
 	{
 		arg->w = va_arg(*ap, int);
-		if (arg -> w < 0)
+		if (arg->w < 0)
 		{
 			arg->w *= -1;
 			arg->left = 1;
