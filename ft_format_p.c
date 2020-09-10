@@ -6,7 +6,7 @@
 /*   By: afukuhar <afukuhar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/09 10:22:56 by afukuhar          #+#    #+#             */
-/*   Updated: 2020/09/09 11:40:45 by afukuhar         ###   ########.fr       */
+/*   Updated: 2020/09/09 14:15:33 by afukuhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,10 @@ char	*pf_analyse_p(t_format *arg, long long int p)
 	char	*nbr;
 	int		len;
 
-	nbr = ft_itoa_base(p, 16, 0);
+	if (arg->p == 0 && !p)
+		nbr = ft_strnew(0);
+	else
+		nbr = ft_itoa_base(p, 16, 0);
 	len = ft_strlen(nbr);
 	arg->pad_zero = (arg->p > len) ? arg->p - len : 0;
 	len += arg->pad_zero;

@@ -6,7 +6,7 @@
 /*   By: afukuhar <afukuhar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/23 15:47:30 by afukuhar          #+#    #+#             */
-/*   Updated: 2020/09/07 15:26:50 by afukuhar         ###   ########.fr       */
+/*   Updated: 2020/09/09 12:49:52 by afukuhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void		ft_pf_internal(const char *str, va_list *ap, t_format *arg)
 {
 	while (*str)
 	{
-		if (*str == '%')
+		if (*str && *str == '%')
 		{
 			str++;
 			arg_init(arg);

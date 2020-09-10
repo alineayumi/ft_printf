@@ -6,7 +6,7 @@
 /*   By: afukuhar <afukuhar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/27 11:36:38 by afukuhar          #+#    #+#             */
-/*   Updated: 2020/09/09 11:08:47 by afukuhar         ###   ########.fr       */
+/*   Updated: 2020/09/09 14:10:09 by afukuhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 const char	*pf_saveflag(const char *str, t_format *arg)
 {
-	while (is_flag(*str))
+	while (*str && is_flag(*str))
 	{
 		if (*str == '0')
 			arg->zero = 1;
@@ -42,6 +42,11 @@ const char	*pf_savew(const char *str, t_format *arg, va_list *ap)
 	else if (*str == '*')
 	{
 		arg->w = va_arg(*ap, int);
+		if (arg -> w < 0)
+		{
+			arg->w *= -1;
+			arg->left = 1;
+		}
 		str++;
 	}
 	return (str);
@@ -75,7 +80,7 @@ const char	*pf_savep(const char *str, t_format *arg, va_list *ap)
 
 const char	*pf_savespec(const char *str, t_format *arg)
 {
-	if (is_conv_spec(*str))
+	if (*str && is_conv_spec(*str))
 	{
 		arg->spec = *str;
 		str++;
