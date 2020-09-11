@@ -6,7 +6,7 @@
 /*   By: afukuhar <afukuhar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/09 10:20:39 by afukuhar          #+#    #+#             */
-/*   Updated: 2020/09/11 12:16:28 by afukuhar         ###   ########.fr       */
+/*   Updated: 2020/09/11 14:12:22 by afukuhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	pf_s(t_format *arg, char *str)
 **
 ** Precision: should print at most p chars, if p < len,
 **				n_str that is the number of chars to print should
-**				be len - p or len (this prints whole string)
+**				be p or len (this prints whole string)
 ** Width: if w > n_str, should pad:
 ** 		- pad: '0' or ' '
 **		- n_pad: how many chars of pad
