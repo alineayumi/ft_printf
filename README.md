@@ -15,6 +15,12 @@ make
 make clean
 gcc main.c libftprintf.a
 ```
+## Moulinette
+
+```
+You have been graded 100 on ft_printf:
+test_spdxiucpercent: 8/8 correct functions | test_fields: 4/4 correct functions | bonus_test: 0/11 correct functions
+```
 
 ## Testers
 - https://github.com/Mazoise/42TESTERS-PRINTF
@@ -34,3 +40,4 @@ printf looks hard at first but I would like to thank you guys for always helping
 * [@michaelgiraldo](https://github.com/michaelgiraldo)
 * [@piratelicorne](https://github.com/piratelicorne)
 * [@olgaish](https://github.com/olgaish)
+
