@@ -6,11 +6,19 @@
 /*   By: afukuhar <afukuhar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/09 10:20:39 by afukuhar          #+#    #+#             */
-/*   Updated: 2020/09/09 10:32:08 by afukuhar         ###   ########.fr       */
+/*   Updated: 2020/09/11 12:16:28 by afukuhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+/*
+** After analysing all attributes
+** Based on left flag
+** it prints pad than str or vice-versa
+**
+** when string is null, should print "(null)"
+*/
 
 void	pf_s(t_format *arg, char *str)
 {
@@ -27,6 +35,17 @@ void	pf_s(t_format *arg, char *str)
 	}
 }
 
+/*
+** First check if string is null and update length accordinly
+**
+** Precision: should print at most p chars, if p < len,
+**				n_str that is the number of chars to print should
+**				be len - p or len (this prints whole string)
+** Width: if w > n_str, should pad:
+** 		- pad: '0' or ' '
+**		- n_pad: how many chars of pad
+*/
+
 void	pf_analyse_s(t_format *arg, char *str)
 {
 	int len;
@@ -42,6 +61,10 @@ void	pf_analyse_s(t_format *arg, char *str)
 		arg->n_pad = arg->w - arg->n_str;
 	}
 }
+
+/*
+** According to n, will print until n chars of string
+*/
 
 int		ft_putnstr(char *str, int n)
 {

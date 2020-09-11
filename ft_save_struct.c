@@ -6,11 +6,16 @@
 /*   By: afukuhar <afukuhar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/27 11:36:38 by afukuhar          #+#    #+#             */
-/*   Updated: 2020/09/10 12:47:08 by afukuhar         ###   ########.fr       */
+/*   Updated: 2020/09/11 11:41:55 by afukuhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+/*
+** All functions read string, update struct accordinly and return a pointer
+** to new position after reading it
+*/
 
 const char	*pf_saveflag(const char *str, t_format *arg)
 {
@@ -24,6 +29,13 @@ const char	*pf_saveflag(const char *str, t_format *arg)
 	}
 	return (str);
 }
+
+/*
+** Save width based on string or va_list (when it is *)
+**
+** if w is sent as * and value is negative, it is converted to
+** positive and updated 'left' flag
+*/
 
 const char	*pf_savew(const char *str, t_format *arg, va_list *ap)
 {
@@ -51,6 +63,13 @@ const char	*pf_savew(const char *str, t_format *arg, va_list *ap)
 	}
 	return (str);
 }
+
+/*
+** Same logic of width, with the difference that you should look for a
+** '.' at beggining
+** a negative precision is saved, but since condition for formatting is that
+** it should be >= 0, it will be ignored on later functions
+*/
 
 const char	*pf_savep(const char *str, t_format *arg, va_list *ap)
 {

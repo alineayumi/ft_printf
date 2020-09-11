@@ -6,11 +6,19 @@
 /*   By: afukuhar <afukuhar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/27 11:42:42 by afukuhar          #+#    #+#             */
-/*   Updated: 2020/09/09 11:57:07 by afukuhar         ###   ########.fr       */
+/*   Updated: 2020/09/11 12:17:13 by afukuhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+/*
+** After analysing all attributes
+** nbr is filled with the right format of the number to be printed
+**
+** Based on left flag
+** it prints pad than nbr or vice-versa
+*/
 
 void	pf_x(t_format *arg, unsigned int x)
 {
@@ -29,6 +37,23 @@ void	pf_x(t_format *arg, unsigned int x)
 	}
 	ft_strdel(&nbr);
 }
+
+/*
+** Converting number (itoa):
+**		- there is a special case that should print nothing when
+**			p is NULL and precision is zero
+**		- otherwise just a common itoa base, checking if spec is upper
+**			or lower to convert accordinly
+**
+** Precision: when p > len, should pad on left with zeroes
+**
+** len: updated if pad_zero > 0;
+**
+** Width: After all updates inside number, we have new len
+** 		based on that, if w > newlen we should pad
+**		- pad: '0' or ' '
+**		- n_pad: how many chars of pad
+*/
 
 char	*pf_analyse_x(t_format *arg, long long int x)
 {
@@ -49,6 +74,13 @@ char	*pf_analyse_x(t_format *arg, long long int x)
 	}
 	return (nbr);
 }
+
+/*
+** Printing the number part
+**	- if is pointer, should print a '0x' at beggining
+**	- print the '0's inside number part
+** 	- print the number string
+*/
 
 int		ft_puthexa(char *nbr, int pad_zero, int is_p)
 {

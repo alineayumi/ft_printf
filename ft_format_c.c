@@ -6,11 +6,17 @@
 /*   By: afukuhar <afukuhar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/27 11:43:26 by afukuhar          #+#    #+#             */
-/*   Updated: 2020/09/09 10:14:01 by afukuhar         ###   ########.fr       */
+/*   Updated: 2020/09/11 12:15:08 by afukuhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+/*
+** After analysing all attributes
+** Based on left flag
+** it prints pad than char or vice-versa
+*/
 
 void		pf_c(t_format *arg, int c)
 {
@@ -26,6 +32,12 @@ void		pf_c(t_format *arg, int c)
 		arg->len += ft_putchar((unsigned char)c);
 	}
 }
+
+/*
+** Analyses if it has a width and if it has, update:
+** 		- pad: '0' or ' '
+**		- n_pad: how many chars of pad
+*/
 
 void		pf_analyse_c(t_format *arg)
 {

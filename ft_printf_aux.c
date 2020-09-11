@@ -6,11 +6,16 @@
 /*   By: afukuhar <afukuhar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/27 12:14:46 by afukuhar          #+#    #+#             */
-/*   Updated: 2020/09/09 13:00:07 by afukuhar         ###   ########.fr       */
+/*   Updated: 2020/09/11 11:36:07 by afukuhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+/*
+** Initialize structure for saving new flags, specs and attributes
+** w and p are -1 because we can have 0 width and precision
+*/
 
 void	arg_init(t_format *arg)
 {
@@ -31,7 +36,7 @@ void	arg_init(t_format *arg)
 ** Read str until
 ** it reaches the end (conversion spec) of arg
 ** filling the structure with the specifications for the argument
-** str points to first char after %
+** and updating the pointer to str
 */
 
 void	get_arg(const char **str, va_list *ap, t_format *new)
@@ -41,6 +46,11 @@ void	get_arg(const char **str, va_list *ap, t_format *new)
 	*str = pf_savep(*str, new, ap);
 	*str = pf_savespec(*str, new);
 }
+
+/*
+** Based on specifier, call the correnponding function
+** for printing it
+*/
 
 void	arg_print(t_format *arg, va_list *ap)
 {
@@ -72,6 +82,10 @@ void	str_print(const char **str, t_format *arg)
 	}
 	*str = end;
 }
+
+/*
+** Auxiliar function used for printing '0' or ' '
+*/
 
 int		ft_putnchar(char pad, int n)
 {

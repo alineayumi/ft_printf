@@ -6,11 +6,26 @@
 /*   By: afukuhar <afukuhar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/23 15:47:30 by afukuhar          #+#    #+#             */
-/*   Updated: 2020/09/09 12:49:52 by afukuhar         ###   ########.fr       */
+/*   Updated: 2020/09/11 11:32:09 by afukuhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+/*
+** Main flow of printf
+**
+** initialize va_list and structure
+** walk through string
+**
+** 		%...<spec> :	initialize struct
+**						get arguments and save it
+**                      print accordinly
+**						update len (number of chars printed)
+**
+**		common string:	print string until it finds a '%' or '\0'
+**						update len (number of chars printed)
+*/
 
 int			ft_printf(const char *str, ...)
 {

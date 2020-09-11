@@ -6,7 +6,7 @@
 /*   By: afukuhar <afukuhar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/27 11:40:30 by afukuhar          #+#    #+#             */
-/*   Updated: 2020/09/09 10:14:15 by afukuhar         ###   ########.fr       */
+/*   Updated: 2020/09/11 11:42:43 by afukuhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,10 @@ char		*nxt_conv_spec(char *str)
 		str++;
 	return (str);
 }
+
+/*
+** Checks if the current character is a specifier
+*/
 
 int			is_conv_spec(char c)
 {

@@ -6,11 +6,21 @@
 /*   By: afukuhar <afukuhar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/09 10:22:56 by afukuhar          #+#    #+#             */
-/*   Updated: 2020/09/09 14:15:33 by afukuhar         ###   ########.fr       */
+/*   Updated: 2020/09/11 12:15:58 by afukuhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+/*
+** After analysing all attributes
+** nbr is filled with the right format of the number to be printed
+**
+** Based on left flag
+** it prints pad than nbr or vice-versa
+**
+** this function uses ft_puthexa, that is in ft_format_x.c
+*/
 
 void	pf_p(t_format *arg, unsigned long long int p)
 {
@@ -29,6 +39,23 @@ void	pf_p(t_format *arg, unsigned long long int p)
 	}
 	ft_strdel(&nbr);
 }
+
+/*
+** Converting number (itoa):
+**		- there is a special case that should print nothing when
+**			p is NULL and precision is zero
+**		- otherwise just a common itoa base
+**
+** Precision: when p > len, should pad on left with zeroes
+**
+** len: updated if pad_zero > 0;
+**
+** Width: After all updates inside number, we have new len
+** 		based on that, if w > newlen + 2 we should pad
+**		(+2 is the ox at beggining of number)
+**		- pad: '0' or ' '
+**		- n_pad: how many chars of pad
+*/
 
 char	*pf_analyse_p(t_format *arg, long long int p)
 {

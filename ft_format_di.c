@@ -6,11 +6,19 @@
 /*   By: afukuhar <afukuhar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/09 10:24:13 by afukuhar          #+#    #+#             */
-/*   Updated: 2020/09/09 11:40:24 by afukuhar         ###   ########.fr       */
+/*   Updated: 2020/09/11 12:15:33 by afukuhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+/*
+** After analysing all attributes
+** nbr is filled with the right format of the number to be printed
+**
+** Based on left flag
+** it prints pad than nbr or vice-versa
+*/
 
 void	pf_di(t_format *arg, long long int n)
 {
@@ -29,6 +37,25 @@ void	pf_di(t_format *arg, long long int n)
 	}
 	ft_strdel(&nbr);
 }
+
+/*
+** Checks if n is neg - change to pos and update is_neg flag if so
+**
+** Converting number (itoa):
+**		- there is a special case that should print nothing when
+**			n is NULL and we have precisio
+**		- otherwise just a common itoa base
+**
+** Precision: when p > len, should pad on left with zeroes
+**
+** len: updated if is_neg (+1) and pad_zero > 0;
+**
+** Width: After all updates inside number, we have new len
+** 		based on that, if w > newlen we should pad
+**		- there is a special case when pad is '0' and we don't have
+**			precision .. zero should go in the number part
+**		- otherwise will be a ' ' pad and we update n_pad and pad
+*/
 
 char	*pf_analyse_di(t_format *arg, long long int n)
 {
@@ -56,6 +83,13 @@ char	*pf_analyse_di(t_format *arg, long long int n)
 	}
 	return (nbr);
 }
+
+/*
+** Printing the number part
+**	- if is_neg, should print a '-' at beggining
+**	- print the '0's inside number part
+** 	- print the number string
+*/
 
 int		ft_putint(char *nbr, int pad_zero, int is_neg)
 {
